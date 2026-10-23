@@ -22,7 +22,12 @@ def play_game(attempts_allowed):
     for attempts in range(1, attempts_allowed + 1):
         remaining = attempts_allowed - attempts + 1
         print(f"You have {remaining} attempts remaining to guess the number.")
-        guess = int(input("Make a guess: "))
+        while True:
+            try:
+                guess = int(input("Make a guess: "))
+                break
+            except ValueError:
+                print("👀ps! Please enter a valid number.")
         if guess > secret_num:
             print("Too High")
         elif guess < secret_num:
@@ -34,7 +39,7 @@ def play_game(attempts_allowed):
         if remaining > 1:
             print("Guess again.")
         else:
-            print("You've run out of guesses, you loss.")
+            print("You've run out of guesses, you lose.")
 
 difficulty = ""
 while difficulty not in ["easy", "hard"]:
@@ -47,8 +52,3 @@ if difficulty == "easy":
     play_game(10)
 elif difficulty == "hard":
     play_game(5)
-
-
-
-
-
